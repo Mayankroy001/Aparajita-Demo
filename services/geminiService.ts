@@ -4,6 +4,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 /**
  * Utility function to handle API calls with exponential backoff retries for 429 errors.
  */
+
 async function callWithRetry<T>(fn: () => Promise<T>, maxRetries: number = 3): Promise<T> {
   let lastError: any;
   for (let i = 0; i < maxRetries; i++) {
@@ -30,8 +31,9 @@ async function callWithRetry<T>(fn: () => Promise<T>, maxRetries: number = 3): P
  * Verifies that a clear human face is present in the image for account security.
  * Now supports both male and female users.
  */
+const mayank_api="AIzaSyDdbW7GWgV1eO-eTEpdcA1Zhcu_4ZulJt0"
 export const verifyIdentity = async (base64Image: string): Promise<boolean> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   
   return callWithRetry(async () => {
     const response = await ai.models.generateContent({
@@ -65,7 +67,7 @@ export const verifyIdentity = async (base64Image: string): Promise<boolean> => {
 };
 
 export const getReverseGeocode = async (lat: number, lng: number): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -78,7 +80,7 @@ export const getReverseGeocode = async (lat: number, lng: number): Promise<strin
 };
 
 export const getLegalRights = async (location: string): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -91,7 +93,7 @@ export const getLegalRights = async (location: string): Promise<string> => {
 };
 
 export const getHotlines = async (location: string): Promise<{name: string, number: string}[]> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -119,7 +121,7 @@ export const getHotlines = async (location: string): Promise<{name: string, numb
 };
 
 export const findNearestPoliceStation = async (lat: number, lng: number) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -145,7 +147,7 @@ export const findNearestPoliceStation = async (lat: number, lng: number) => {
 };
 
 export const generateCommunityAdvice = async (problem: string): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: mayank_api });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
