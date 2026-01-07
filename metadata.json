@@ -1,0 +1,8 @@
+{
+  "name": "Aparajita final trial",
+  "description": "A comprehensive safety application for women featuring AI face verification, emergency SOS triggers (shake-to-alert), location sharing with nearby users/police, and a supportive community forum.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
